@@ -1,0 +1,7 @@
+{
+	  "id"        : "preside-ext-openai-api"
+	, "title"     : "OpenAI API"
+	, "author"    : "Teon Ooi"
+	, "version"   : "$VERSION_NUMBER"
+	, "dependsOn" : []
+}

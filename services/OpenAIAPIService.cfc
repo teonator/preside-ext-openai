@@ -11,7 +11,6 @@ component {
 	public any function request(
 		  required string uri
 		,          struct params  = {}
-		,          string body    = ""
 		,          string method  = "GET"
 		,          string version = "1"
 	) {
@@ -25,20 +24,12 @@ component {
 				Throw( "Open API key is required.", "openai.api.key.required" );
 			}
 
-			for ( var key in arguments.params ) {
-				apiParams = ListAppend( apiParams, "#key#=#arguments.params[ key ]#", "&" );
-			}
-
-			if ( Len( Trim( apiParams ) ) ) {
-				apiUrl = "#apiUrl#?#apiParams#";
-			}
-
 			http url=apiUrl method=arguments.method result="apiResult" timeout=30 {
 				httpparam type="header" name="Content-Type"  value="application/json";
 				httpparam type="header" name="Authorization" value="Bearer #apiKey#";
 
-				if ( Len( Trim( arguments.body ) ) ) {
-					httpparam type="body" value=arguments.body;
+				if ( StructCount( arguments.params ) ) {
+					httpparam type="body" value="#SerializeJSON( arguments.params )#";
 				}
 			}
 		} catch( any e ) {

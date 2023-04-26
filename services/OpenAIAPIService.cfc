@@ -46,6 +46,15 @@ component {
 		);
 	}
 
+	public struct function retrieveModel(
+		required string model
+	) {
+		return this.request(
+			  uri    = "models/#arguments.model#"
+			, method = "GET"
+		);
+	}
+
 	public struct function createCompletion(
 		  required string  model
 		,          string  prompt           = "\n\n"

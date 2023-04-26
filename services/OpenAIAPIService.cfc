@@ -71,17 +71,21 @@ component {
 		,          numeric frequencyPenalty = 0
 		,          numeric bestOf           = 1
 	) {
+		return this.request(
+			  uri    = "completions"
+			, method = "POST"
+			, params = _convertCamelToSnake( argumentCollection=arguments )
+		);
+	}
+
+	private struct function _convertCamelToSnake() {
 		var params = {};
 
 		for ( var key in arguments ) {
 			StructAppend( params, { "#LCase( REReplace( key, "([a-z0-9])([A-Z])", "\1_\2", "ALL" ) )#"=arguments[ key ] } );
 		}
 
-		return this.request(
-			  uri    = "completions"
-			, method = "POST"
-			, params = params
-		);
+		return params;
 	}
 
 	private struct function _processResult( required struct result ) {

@@ -39,6 +39,35 @@ component {
 		return _processResult( apiResult );
 	}
 
+	public struct function createCompletion(
+		  required string  model
+		,          string  prompt           = "\n\n"
+		,          string  suffix           = NullValue()
+		,          numeric maxTokens        = 16
+		,          numeric temperature      = 1
+		,          numeric topP             = 1
+		,          numeric n                = 1
+		,          boolean stream           = false
+		,          numeric logprobs         = NullValue()
+		,          boolean echo             = false
+		,          string  stop             = NullValue()
+		,          numeric presencePenalty  = 0
+		,          numeric frequencyPenalty = 0
+		,          numeric bestOf           = 1
+	) {
+		var params = {};
+
+		for ( var key in arguments ) {
+			StructAppend( params, { "#LCase( REReplace( key, "([a-z0-9])([A-Z])", "\1_\2", "ALL" ) )#"=arguments[ key ] } );
+		}
+
+		return this.request(
+			  uri    = "completions"
+			, method = "POST"
+			, params = params
+		);
+	}
+
 	private struct function _processResult( required struct result ) {
 		var processedResult = StructNew();
 		var content         = result.fileContent ?: "";

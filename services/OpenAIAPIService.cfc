@@ -39,6 +39,13 @@ component {
 		return _processResult( apiResult );
 	}
 
+	public struct function listModels() {
+		return this.request(
+			  uri    = "models"
+			, method = "GET"
+		);
+	}
+
 	public struct function createCompletion(
 		  required string  model
 		,          string  prompt           = "\n\n"

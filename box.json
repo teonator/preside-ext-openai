@@ -1,5 +1,5 @@
 {
-    "name":"Preside Extension: OpenAI API",
+    "name":"Preside Extension: OpenAI",
     "type":"preside-extensions",
     "version":"$VERSION_NUMBER",
     "location":"$DOWNLOAD_URL",

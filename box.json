@@ -8,10 +8,10 @@
     "directory":"application/extensions",
     "repository":{
         "type":"git",
-        "URL":"https://github.com/teonator/preside-ext-openai-api"
+        "URL":"https://github.com/teonator/preside-ext-openai"
     },
-    "slug":"preside-ext-openai-api",
-    "projectURL":"https://github.com/teonator/preside-ext-openai-api",
+    "slug":"preside-ext-openai",
+    "projectURL":"https://github.com/teonator/preside-ext-openai",
     "ignore":[
         ".git/*",
         ".gitignore",
